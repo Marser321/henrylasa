@@ -40,7 +40,7 @@ export function useFrameLoader({
     sequencePath,
     frameCount,
     fileNamePrefix = "ezgif-frame-",
-    format = "png",
+    format = "webp",
     digits = 3,
     criticalCount = 50,
 }: UseFrameLoaderOptions): UseFrameLoaderResult {
