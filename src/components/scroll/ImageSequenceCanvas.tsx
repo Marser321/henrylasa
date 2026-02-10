@@ -34,7 +34,7 @@ export function ImageSequenceCanvas({
     frameCount,
     className,
     fileNamePrefix = "ezgif-frame-",
-    format = "png",
+    format = "webp",
     digits = 3,
     scrubSmooth = 0.5,
 }: ImageSequenceCanvasProps) {
