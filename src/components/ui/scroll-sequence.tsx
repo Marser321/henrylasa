@@ -18,7 +18,7 @@ export function ScrollSequence({
     frameCount,
     className,
     fileNamePrefix = "ezgif-frame-",
-    fileNameSuffix = ".png",
+    fileNameSuffix = ".webp",
     digits = 3,
 }: ScrollSequenceProps) {
     const containerRef = useRef<HTMLDivElement>(null);
