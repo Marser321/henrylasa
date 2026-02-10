@@ -203,15 +203,6 @@ export function ImageSequenceCanvas({
                     style={{ display: "block" }}
                 />
 
-                {/* Debug Overlay */}
-                <div className="absolute top-0 left-0 bg-black/50 text-white text-xs p-2 pointer-events-none z-50">
-                    <p>Ready: {String(isReady)}</p>
-                    <p>Progress: {Math.round(loadProgress * 100)}%</p>
-                    <p>Format: {format}</p>
-                    <p>First URL: {sequencePath}/{fileNamePrefix}{String(1).padStart(digits, "0")}.{format}</p>
-                    <p>Frame 0: {frames[0] ? "Loaded" : "NULL"}</p>
-                </div>
-
                 {/* Indicador de carga */}
                 {!isReady && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-[var(--bg-void,#131313)]">
