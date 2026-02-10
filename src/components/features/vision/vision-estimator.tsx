@@ -65,7 +65,7 @@ export function VisionEstimator({ className }: VisionEstimatorProps) {
 
     return (
         <GlassCard className={cn("p-6 max-w-xl mx-auto", className)}>
-            <h3 className="text-2xl text-white mb-4 font-light">Henry Vision™</h3>
+            <h3 className="text-2xl text-white mb-4 font-light">Jenrys Vision™</h3>
             <p className="text-white/60 mb-6 text-sm">
                 Upload a photo of your space. Our AI will estimate the dimensions and suggest layouts.
             </p>

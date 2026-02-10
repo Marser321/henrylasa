@@ -31,7 +31,7 @@ export default function Home() {
                 </ScrollTextReveal>
                 <ScrollTextReveal direction="up" delay={0.2} duration={1.2}>
                   <h1 className="text-hero text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)] mb-4">
-                    HENRY
+                    JENRYS
                   </h1>
                 </ScrollTextReveal>
                 <ScrollTextReveal direction="up" delay={0.4} duration={1.2}>
@@ -153,7 +153,7 @@ export default function Home() {
         <div className="absolute inset-0 pointer-events-none">
           <div className="sticky top-0 h-screen w-full flex items-center justify-center p-6">
             <ScrollTextReveal duration={1.5}>
-              <h2 className="text-hero text-white tracking-tighter drop-shadow-2xl">
+              <h2 className="text-hero text-white tracking-tighter drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)] z-10 relative">
                 Precision.
               </h2>
             </ScrollTextReveal>
@@ -202,7 +202,7 @@ export default function Home() {
       <footer className="relative z-10 border-t border-white/10 bg-[var(--bg-void)] py-6">
         <div className="container mx-auto px-6 text-center">
           <p className="text-xs text-white/20 font-light tracking-wider">
-            © {new Date().getFullYear()} Henry Kitchen &amp; Closet. All rights reserved.
+            © {new Date().getFullYear()} Jenrys Kitchen &amp; Closet. All rights reserved.
           </p>
         </div>
       </footer>

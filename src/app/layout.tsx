@@ -19,7 +19,7 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "Henry | Luxury Kitchens & Closets",
+  title: "Jenrys | Luxury Kitchens & Closets",
   description:
     "Bespoke millwork for elevated spaces. Premium kitchens and closets with signature Liquid Glass finish. Custom carpentry in Miami.",
   keywords: [
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     "bespoke carpentry",
     "liquid glass",
     "Miami",
-    "Henry Kitchen",
+    "Jenrys Kitchen",
   ],
   openGraph: {
-    title: "Henry | Luxury Kitchens & Closets",
+    title: "Jenrys | Luxury Kitchens & Closets",
     description:
       "Bespoke millwork for elevated spaces. Premium kitchens and closets.",
     type: "website",

@@ -1,5 +1,5 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// HENRY KITCHEN & CLOSET — Textos Maestros / Master Copy
+// JENRYS KITCHEN & CLOSET — Textos Maestros / Master Copy
 // Idiomas: English (US Luxury) & Español (Latinoamérica High-End)
 // Tono: "Old World Craftsmanship, New World Technology"
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -29,8 +29,8 @@ export const hero = {
         es: "Estudio de Ebanistería a Medida",
     },
     headline: {
-        en: "HENRY",
-        es: "HENRY",
+        en: "JENRYS",
+        es: "JENRYS",
     },
     subheadline: {
         en: "Kitchen & Closet",
@@ -47,7 +47,7 @@ export const hero = {
 } as const;
 
 // ─────────────────────────────────────────────────────────────────────────
-// 2. ABOUT US — La Historia de Henry
+// 2. ABOUT US — La Historia de Jenrys
 // ─────────────────────────────────────────────────────────────────────────
 
 export const about = {
@@ -119,8 +119,8 @@ export const about = {
 
 export const whyChooseUs = {
     overline: {
-        en: "The Henry Difference",
-        es: "La Diferencia Henry",
+        en: "The Jenrys Difference",
+        es: "La Diferencia Jenrys",
     },
     headline: {
         en: "Three Pillars of Excellence",
@@ -213,13 +213,13 @@ export const precisionStatement = {
 } as const;
 
 // ─────────────────────────────────────────────────────────────────────────
-// 6. HENRY VISION — AR & AI
+// 6. JENRYS VISION — AR & AI
 // ─────────────────────────────────────────────────────────────────────────
 
 export const vision = {
     overline: {
-        en: "Henry Vision™",
-        es: "Henry Vision™",
+        en: "Jenrys Vision™",
+        es: "Jenrys Vision™",
     },
     headline: {
         en: "See It Before It Exists.",
@@ -304,8 +304,8 @@ export const contact = {
     successMessage: {
         headline: { en: "Message Sent", es: "Mensaje Enviado" },
         body: {
-            en: "Thank you. Henry's design team acts fast. We will review your vision and contact you within 24 hours to schedule a measurement.",
-            es: "Gracias. El equipo de diseño de Henry actúa rápido. Revisaremos su visión y le contactaremos en menos de 24 horas para agendar una medición."
+            en: "Thank you. Jenrys's design team acts fast. We will review your vision and contact you within 24 hours to schedule a measurement.",
+            es: "Gracias. El equipo de diseño de Jenrys actúa rápido. Revisaremos su visión y le contactaremos en menos de 24 horas para agendar una medición."
         },
         cta: { en: "Send another message", es: "Enviar otro mensaje" },
     }
@@ -317,8 +317,8 @@ export const contact = {
 
 export const footer = {
     brandName: {
-        en: "Henry",
-        es: "Henry",
+        en: "Jenrys",
+        es: "Jenrys",
     },
     tagline: {
         en: "Bespoke Kitchens & Closets · South Florida",
@@ -332,8 +332,8 @@ export const footer = {
         contact: { en: "Contact", es: "Contacto" },
     },
     legal: {
-        en: "© {year} Henry Kitchen & Closet. All rights reserved.",
-        es: "© {year} Henry Kitchen & Closet. Todos los derechos reservados.",
+        en: "© {year} Jenrys Kitchen & Closet. All rights reserved.",
+        es: "© {year} Jenrys Kitchen & Closet. Todos los derechos reservados.",
     },
     locationLabel: {
         en: "Crafted in South Florida",
@@ -348,8 +348,8 @@ export const footer = {
 export const meta = {
     home: {
         title: {
-            en: "Henry Kitchen & Closet | Bespoke Luxury Millwork · South Florida",
-            es: "Henry Kitchen & Closet | Ebanistería de Lujo a Medida · South Florida",
+            en: "Jenrys Kitchen & Closet | Bespoke Luxury Millwork · South Florida",
+            es: "Jenrys Kitchen & Closet | Ebanistería de Lujo a Medida · South Florida",
         },
         description: {
             en: "Bespoke kitchens, walk-in closets, and precision millwork for discerning homeowners in Coral Gables, Key Biscayne, and South Florida. Old-world craftsmanship, new-world technology.",
@@ -358,12 +358,12 @@ export const meta = {
     },
     about: {
         title: {
-            en: "About Henry | Decades of Artisan Craftsmanship · South Florida",
-            es: "Sobre Henry | Décadas de Artesanía · South Florida",
+            en: "About Jenrys | Decades of Artisan Craftsmanship · South Florida",
+            es: "Sobre Jenrys | Décadas de Artesanía · South Florida",
         },
         description: {
-            en: "Meet the artisans behind Henry Kitchen & Closet. Decades of woodworking expertise, local manufacturing, and a relentless pursuit of perfection in every joint and finish.",
-            es: "Conozca a los artesanos detrás de Henry Kitchen & Closet. Décadas de experiencia en ebanistería, fabricación local, y una búsqueda incansable de la perfección en cada unión y acabado.",
+            en: "Meet the artisans behind Jenrys Kitchen & Closet. Decades of woodworking expertise, local manufacturing, and a relentless pursuit of perfection in every joint and finish.",
+            es: "Conozca a los artesanos detrás de Jenrys Kitchen & Closet. Décadas de experiencia en ebanistería, fabricación local, y una búsqueda incansable de la perfección en cada unión y acabado.",
         },
     },
 } as const;

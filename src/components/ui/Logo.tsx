@@ -45,11 +45,11 @@ export const Logo = ({ className = "h-12 w-auto" }: { className?: string }) => {
                 textAnchor="middle"
                 fontFamily="Arial, sans-serif"
                 fontWeight="bold"
-                fontSize="120"
+                fontSize="110"
                 fill="#ffffff"
                 letterSpacing="8"
             >
-                HENRY
+                JENRYS
             </text>
 
             {/* Subtext Background — Dorado */}
