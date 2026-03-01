@@ -179,19 +179,18 @@ export default function Home() {
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        * 7. CONTACT — Final CTA
        * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="contact" className="relative z-20 bg-black">
-        {/* Added z-20 and bg-black to ensure it covers previous content if overlapped */}
+      <section id="contact" className="relative z-20 bg-[var(--bg-void)]">
         <ImageSequenceCanvas
           sequencePath="/scroll/sequence-7"
           frameCount={240}
           className="h-[300vh]"
         />
         <div className="absolute inset-0 pointer-events-none">
-          <div className="sticky top-0 h-screen w-full flex items-start justify-center pt-8 md:pt-12 p-6 bg-black/40 backdrop-blur-sm overflow-y-auto">
-            {/* Added backdrop-blur to improve text readability against canvas */}
-            <div className="pointer-events-auto w-full">
-              <ScrollTextReveal>
-                <ContactForm />
+          {/* Se usa min-h-[100dvh] para permitir scroll de sobrepaso si el cel es chico */}
+          <div className="sticky top-0 min-h-[100dvh] max-h-screen w-full flex flex-col items-center justify-center p-4 md:p-6 bg-black/50 backdrop-blur-md overflow-y-auto overscroll-contain">
+            <div className="pointer-events-auto w-full py-20 md:py-0 flex items-center justify-center">
+              <ScrollTextReveal className="w-full max-w-2xl">
+                <ContactForm className="mx-auto" />
               </ScrollTextReveal>
             </div>
           </div>

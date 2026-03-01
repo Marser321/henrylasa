@@ -88,13 +88,13 @@ export function ContactForm({ className }: { className?: string }) {
     }
 
     return (
-        <GlassCard className={cn("w-[90%] max-w-2xl mx-auto relative overflow-hidden my-4", className)}>
+        <GlassCard className={cn("w-full max-w-2xl mx-auto relative overflow-hidden p-5 md:p-8", className)}>
             {/* Language Toggle */}
-            <div className="absolute top-6 right-6 z-10 flex items-center gap-2 bg-black/20 backdrop-blur-md rounded-full p-1 border border-white/5">
+            <div className="absolute top-4 right-4 md:top-6 md:right-6 z-10 flex items-center gap-1 md:gap-2 bg-black/20 backdrop-blur-md rounded-full p-1 border border-white/5">
                 <button
                     onClick={() => setLang("en")}
                     className={cn(
-                        "px-3 py-1 text-xs uppercase tracking-wider rounded-full transition-all",
+                        "px-3 py-1 text-[10px] md:text-xs uppercase tracking-wider rounded-full transition-all",
                         lang === "en" ? "bg-white text-black font-medium" : "text-white/40 hover:text-white"
                     )}
                 >
@@ -103,7 +103,7 @@ export function ContactForm({ className }: { className?: string }) {
                 <button
                     onClick={() => setLang("es")}
                     className={cn(
-                        "px-3 py-1 text-xs uppercase tracking-wider rounded-full transition-all",
+                        "px-3 py-1 text-[10px] md:text-xs uppercase tracking-wider rounded-full transition-all",
                         lang === "es" ? "bg-white text-black font-medium" : "text-white/40 hover:text-white"
                     )}
                 >
@@ -111,21 +111,21 @@ export function ContactForm({ className }: { className?: string }) {
                 </button>
             </div>
 
-            <div className="mb-6 text-center">
-                <p className="text-overline mb-3 text-[var(--accent-gold)]">{t(c.overline)}</p>
-                <h2 className="text-2xl md:text-4xl font-display text-white mb-3 whitespace-pre-line">
+            <div className="mb-5 md:mb-6 text-center mt-2 md:mt-0">
+                <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] mb-2 md:mb-3 text-[var(--accent-gold)]">{t(c.overline)}</p>
+                <h2 className="text-xl md:text-3xl font-display text-white mb-2 md:mb-3 whitespace-pre-line">
                     {t(c.headline)}
                 </h2>
-                <p className="text-white/50 max-w-xl mx-auto font-light leading-relaxed text-sm">
+                <p className="text-white/50 max-w-xl mx-auto font-light leading-relaxed text-xs md:text-sm">
                     {t(c.description)}
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 md:gap-5">
                 {/* 1. Contact Details */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div className="space-y-1">
-                        <label htmlFor="contact-name" className="text-xs uppercase tracking-wider text-white/40 ml-1">{t(labels.name)}</label>
+                        <label htmlFor="contact-name" className="text-[10px] md:text-xs uppercase tracking-wider text-white/40 ml-1">{t(labels.name)}</label>
                         <input
                             id="contact-name"
                             required
@@ -134,11 +134,11 @@ export function ContactForm({ className }: { className?: string }) {
                             onChange={handleChange}
                             type="text"
                             placeholder={t(labels.namePlaceholder as { en: string; es: string }) || ""}
-                            className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)]/50 focus:border-[var(--accent-gold)]/50 transition-all"
+                            className="w-full p-3 md:p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)]/50 focus:border-[var(--accent-gold)]/50 transition-all text-sm"
                         />
                     </div>
                     <div className="space-y-1">
-                        <label htmlFor="contact-phone" className="text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.phone)}</label>
+                        <label htmlFor="contact-phone" className="text-[10px] md:text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.phone)}</label>
                         <input
                             id="contact-phone"
                             required
@@ -147,13 +147,13 @@ export function ContactForm({ className }: { className?: string }) {
                             onChange={handleChange}
                             type="tel"
                             placeholder={t(labels.phonePlaceholder as { en: string; es: string }) || ""}
-                            className="w-full p-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] focus:border-[var(--accent-gold)] transition-all"
+                            className="w-full p-3 md:p-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] focus:border-[var(--accent-gold)] transition-all text-sm"
                         />
                     </div>
                 </div>
 
                 <div className="space-y-1">
-                    <label htmlFor="contact-email" className="text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.email)}</label>
+                    <label htmlFor="contact-email" className="text-[10px] md:text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.email)}</label>
                     <input
                         id="contact-email"
                         required
@@ -162,14 +162,12 @@ export function ContactForm({ className }: { className?: string }) {
                         onChange={handleChange}
                         type="email"
                         placeholder={t(labels.emailPlaceholder as { en: string; es: string }) || ""}
-                        className="w-full p-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] focus:border-[var(--accent-gold)] transition-all"
+                        className="w-full p-3 md:p-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] focus:border-[var(--accent-gold)] transition-all text-sm"
                     />
                 </div>
 
-
-
                 <div className="space-y-1">
-                    <label htmlFor="contact-message" className="text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.message)}</label>
+                    <label htmlFor="contact-message" className="text-[10px] md:text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.message)}</label>
                     <textarea
                         id="contact-message"
                         required
@@ -177,23 +175,22 @@ export function ContactForm({ className }: { className?: string }) {
                         value={formData.message}
                         onChange={handleChange}
                         placeholder={t(labels.messagePlaceholder as { en: string; es: string }) || ""}
-                        rows={4}
-                        className="w-full p-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] focus:border-[var(--accent-gold)] transition-all resize-none"
+                        className="w-full p-3 md:p-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] focus:border-[var(--accent-gold)] transition-all resize-none text-sm min-h-[80px] md:min-h-[120px]"
                     />
                 </div>
 
                 {/* Error de envío */}
                 {error && (
-                    <div className="text-red-400 text-sm bg-red-400/10 p-3 rounded-lg border border-red-400/20">
+                    <div className="text-red-400 text-xs md:text-sm bg-red-400/10 p-2 md:p-3 rounded-lg border border-red-400/20">
                         {error}
                     </div>
                 )}
 
-                <div className="pt-4">
+                <div className="pt-2 md:pt-4">
                     <button
                         disabled={isLoading}
                         type="submit"
-                        className="w-full py-4 rounded-xl bg-white text-black font-display font-semibold text-lg tracking-wide hover:bg-[#eaeaea] focus:ring-2 focus:ring-white/50 disabled:opacity-70 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                        className="w-full py-3 md:py-4 rounded-xl bg-white text-black font-display font-semibold text-base md:text-lg tracking-wide hover:bg-[#eaeaea] focus:ring-2 focus:ring-white/50 disabled:opacity-70 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
                     >
                         {isLoading ? (
                             <>
