@@ -40,7 +40,7 @@ export function ScrollSequence({
             const promises: Promise<void>[] = [];
 
             for (let i = 1; i <= frameCount; i++) {
-                const promise = new Promise<void>((resolve, reject) => {
+                const promise = new Promise<void>((resolve, _reject) => {
                     const img = new Image();
                     const fileName = `${fileNamePrefix}${String(i).padStart(digits, "0")}${fileNameSuffix}`;
                     img.src = `${sequencePath}/${fileName}`;

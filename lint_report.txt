@@ -1,0 +1,137 @@
+﻿
+> temp-app@0.1.0 lint
+> eslint
+
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\barbers\page.tsx
+  3:10  warning  'Scissors' is defined but never used  @typescript-eslint/no-unused-vars
+  4:8   warning  'Link' is defined but never used      @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\clients\new\page.tsx
+  41:18  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\invoices\new\actions.ts
+  87:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\invoices\new\page.tsx
+    6:101  warning  'Scale' is defined but never used         @typescript-eslint/no-unused-vars
+    7:10   warning  'cn' is defined but never used            @typescript-eslint/no-unused-vars
+   56:70   error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  153:18   warning  'error' is defined but never used         @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\invoices\page.tsx
+   3:34  warning  'FileDown' is defined but never used      @typescript-eslint/no-unused-vars
+   3:44  warning  'ArrowRight' is defined but never used    @typescript-eslint/no-unused-vars
+  87:53  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\layout.tsx
+  3:16  warning  'PlusSquare' is defined but never used    @typescript-eslint/no-unused-vars
+  3:35  warning  'FolderKanban' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\projects\actions.ts
+  45:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\settings\page.tsx
+  3:10  warning  'Settings' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\api\vision\estimate\route.ts
+   3:28  warning  'request' is defined but never used  @typescript-eslint/no-unused-vars
+  27:14  warning  'error' is defined but never used    @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\features\vision\ar-viewer.tsx
+  1:1  error    Do not use "@ts-nocheck" because it alters compilation errors  @typescript-eslint/ban-ts-comment
+  5:8  warning  'Script' is defined but never used                             @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\features\vision\vision-estimator.tsx
+   59:18  warning  'err' is defined but never used                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+   82:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  135:29  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  135:76  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\providers\SmoothScrollProvider.tsx
+  62:39  error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\providers\SmoothScrollProvider.tsx:62:39
+  60 |
+  61 |     return (
+> 62 |         <LenisContext.Provider value={lenisRef.current}>
+     |                                       ^^^^^^^^^^^^^^^^ Cannot access ref value during render
+  63 |             {children}
+  64 |         </LenisContext.Provider>
+  65 |     );  react-hooks/refs
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\scroll\ImageSequenceCanvas.tsx
+   87:25  error    Error: Cannot access variable before it is declared
+
+`drawImageCover` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\scroll\ImageSequenceCanvas.tsx:87:25
+  85 |                         currentFrames[safeIndex - offset] || currentFrames[safeIndex + offset];
+  86 |                     if (nearFrame) {
+> 87 |                         drawImageCover(ctx, nearFrame, canvas.width, canvas.height, scale);
+     |                         ^^^^^^^^^^^^^^ `drawImageCover` accessed before it is declared
+  88 |                         return;
+  89 |                     }
+  90 |                 }
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\scroll\ImageSequenceCanvas.tsx:100:5
+   98 |
+   99 |     // ÔöÇÔöÇÔöÇ Dibujar con "object-fit: cover" ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+> 100 |     function drawImageCover(
+      |     ^^^^^^^^^^^^^^^^^^^^^^^^
+> 101 |         ctx: CanvasRenderingContext2D,
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 102 |         img: HTMLImageElement,
+      ÔÇª
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 139 |         ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 140 |     }
+      | ^^^^^^ `drawImageCover` is declared here
+  141 |
+  142 |     // ÔöÇÔöÇÔöÇ Resize handler ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+  143 |     useEffect(() => {  react-hooks/immutability
+  155:19  warning  'ctx' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\scroll\ScrollTextReveal.tsx
+  51:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\scroll\ScrollTextReveal.tsx:51:13
+  49 |
+  50 |         if (prefersReducedMotion) {
+> 51 |             setIsVisible(true);
+     |             ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  52 |             return;
+  53 |         }
+  54 |  react-hooks/set-state-in-effect
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\ui\contact-form.tsx
+    6:33  warning  'Globe' is defined but never used         @typescript-eslint/no-unused-vars
+  120:70  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  132:71  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  146:67  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  160:69  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  175:54  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\ui\scroll-sequence.tsx
+   43:61  warning  'reject' is defined but never used                                                                                                   @typescript-eslint/no-unused-vars
+  132:8   warning  React Hook useEffect has missing dependencies: 'currentIndex' and 'renderFrame'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  139:8   warning  React Hook useEffect has missing dependencies: 'currentIndex' and 'renderFrame'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\hooks\useFrameLoader.ts
+   99:46  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  166:8   warning  React Hook useEffect has a missing dependency: 'loadFrame'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\types\supabase.ts
+  1:0  error  Parsing error: File appears to be binary
+
+Ô£û 39 problems (17 errors, 22 warnings)
+

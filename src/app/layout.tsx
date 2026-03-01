@@ -19,22 +19,20 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "Jenrys | Luxury Kitchens & Closets",
+  title: "Lasa Kitchens & Closets | Bespoke Millwork Studio",
   description:
-    "Bespoke millwork for elevated spaces. Premium kitchens and closets with signature Liquid Glass finish. Custom carpentry in Miami.",
+    "Bespoke Millwork Studio in South Florida. Tailors of wood, specializing in kitchens, closets, and architectural millwork.",
   keywords: [
-    "luxury kitchens",
-    "custom closets",
-    "millwork",
-    "bespoke carpentry",
-    "liquid glass",
-    "Miami",
-    "Jenrys Kitchen",
+    "bespoke kitchens",
+    "lasa closets",
+    "custom cabinetry miami",
+    "miami woodworking",
+    "south florida millwork",
   ],
   openGraph: {
-    title: "Jenrys | Luxury Kitchens & Closets",
+    title: "Lasa Kitchens & Closets | Bespoke Millwork Studio",
     description:
-      "Bespoke millwork for elevated spaces. Premium kitchens and closets.",
+      "Bespoke Millwork Studio in South Florida. Tailors of wood.",
     type: "website",
   },
 };

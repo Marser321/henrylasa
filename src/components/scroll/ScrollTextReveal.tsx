@@ -48,7 +48,7 @@ export function ScrollTextReveal({
         ).matches;
 
         if (prefersReducedMotion) {
-            setIsVisible(true);
+            queueMicrotask(() => setIsVisible(true));
             return;
         }
 

@@ -1,8 +1,6 @@
-// @ts-nocheck
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Script from "next/script";
 
 // Custom element type is defined in src/types/declarations.d.ts
 

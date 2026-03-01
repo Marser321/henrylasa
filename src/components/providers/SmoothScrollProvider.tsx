@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, createContext, useContext, type ReactNode } from "react";
+import { useEffect, useRef, useState, createContext, useContext, type ReactNode } from "react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -25,6 +25,7 @@ interface SmoothScrollProviderProps {
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     const lenisRef = useRef<Lenis | null>(null);
+    const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
 
     useEffect(() => {
         // Respetar preferencias de accesibilidad
@@ -40,26 +41,26 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
         });
 
         lenisRef.current = lenis;
+        queueMicrotask(() => setLenisInstance(lenis));
 
         // Sincronizar Lenis con GSAP ScrollTrigger
         lenis.on("scroll", ScrollTrigger.update);
 
-        // Ticker de GSAP maneja el RAF loop
-        gsap.ticker.add((time) => {
+        const ticker = (time: number) => {
             lenis.raf(time * 1000);
-        });
+        };
 
-        // Desactivar el RAF interno de Lenis (GSAP lo maneja)
-        gsap.ticker.lagSmoothing(0);
+        gsap.ticker.add(ticker);
 
         return () => {
+            gsap.ticker.remove(ticker);
             lenis.destroy();
-            lenisRef.current = null;
+            queueMicrotask(() => setLenisInstance(null));
         };
     }, []);
 
     return (
-        <LenisContext.Provider value={lenisRef.current}>
+        <LenisContext.Provider value={lenisInstance}>
             {children}
         </LenisContext.Provider>
     );

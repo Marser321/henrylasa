@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
+export async function POST(_request: Request) {
     try {
         // In a real implementation, we would parse the form data (image)
         // const formData = await request.formData();
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
         };
 
         return NextResponse.json(mockAnalysis);
-    } catch (error) {
+    } catch (_error) {
         return NextResponse.json(
             { error: "Failed to analyze image" },
             { status: 500 }

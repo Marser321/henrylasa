@@ -5,10 +5,12 @@ import { ScrollTextReveal } from "@/components/scroll/ScrollTextReveal";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ProjectGallery } from "@/components/ui/project-gallery";
 import { ContactForm } from "@/components/ui/contact-form";
+import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen bg-background text-foreground">
+      <WhatsAppButton />
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        * 1. HERO — Cinematic Sequence + Brand Reveal
@@ -31,12 +33,12 @@ export default function Home() {
                 </ScrollTextReveal>
                 <ScrollTextReveal direction="up" delay={0.2} duration={1.2}>
                   <h1 className="text-hero text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)] mb-4">
-                    JENRYS
+                    LASA
                   </h1>
                 </ScrollTextReveal>
                 <ScrollTextReveal direction="up" delay={0.4} duration={1.2}>
                   <p className="text-xl md:text-2xl text-white/80 font-light tracking-[0.3em] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                    Kitchen &amp; Closet
+                    Kitchens & Closets
                   </p>
                 </ScrollTextReveal>
               </div>
@@ -202,7 +204,7 @@ export default function Home() {
       <footer className="relative z-10 border-t border-white/10 bg-[var(--bg-void)] py-6">
         <div className="container mx-auto px-6 text-center">
           <p className="text-xs text-white/20 font-light tracking-wider">
-            © {new Date().getFullYear()} Jenrys Kitchen &amp; Closet. All rights reserved.
+            © {new Date().getFullYear()} Lasa Kitchens &amp; Closets. All rights reserved.
           </p>
         </div>
       </footer>

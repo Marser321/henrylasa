@@ -25,7 +25,9 @@ interface ImageSequenceCanvasProps {
     format?: "png" | "webp";
     /** Dígitos para padding del nombre (default: 3) */
     digits?: number;
-    /** Suavidad del scrub — 0 = inmediato, 1+ = más suave (default: 0.5) */
+    /** Factor de escala para hacer zoom y recortar bordes (default: 1.15) */
+    scale?: number;
+    /** Factor de suavizado para el scrub (default: 0.5) */
     scrubSmooth?: number;
 }
 
@@ -37,6 +39,7 @@ export function ImageSequenceCanvas({
     format = "webp",
     digits = 3,
     scrubSmooth = 0.5,
+    scale = 1.15,
 }: ImageSequenceCanvasProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -58,6 +61,47 @@ export function ImageSequenceCanvas({
     useEffect(() => {
         framesRef.current = frames;
     }, [frames]);
+
+    // ─── Dibujar con "object-fit: cover" ──────────────────────
+    const drawImageCover = useCallback((
+        ctx: CanvasRenderingContext2D,
+        img: HTMLImageElement,
+        canvasW: number,
+        canvasH: number,
+        scale: number
+    ) => {
+        const canvasRatio = canvasW / canvasH;
+        const imgRatio = img.width / img.height;
+
+        let drawW = canvasW;
+        let drawH = canvasH;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        if (imgRatio > canvasRatio) {
+            drawH = canvasH;
+            drawW = img.width * (canvasH / img.height);
+            offsetX = (canvasW - drawW) / 2;
+        } else {
+            drawW = canvasW;
+            drawH = img.height * (canvasW / img.width);
+            offsetY = (canvasH - drawH) / 2;
+        }
+
+        if (scale !== 1) {
+            const originalW = drawW;
+            const originalH = drawH;
+
+            drawW *= scale;
+            drawH *= scale;
+
+            offsetX -= (drawW - originalW) / 2;
+            offsetY -= (drawH - originalH) / 2;
+        }
+
+        ctx.clearRect(0, 0, canvasW, canvasH);
+        ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
+    }, []);
 
     // ─── Dibujar frame en canvas ──────────────────────────────
     const renderFrame = useCallback(
@@ -81,46 +125,19 @@ export function ImageSequenceCanvas({
                     const nearFrame =
                         currentFrames[safeIndex - offset] || currentFrames[safeIndex + offset];
                     if (nearFrame) {
-                        drawImageCover(ctx, nearFrame, canvas.width, canvas.height);
+                        drawImageCover(ctx, nearFrame, canvas.width, canvas.height, scale);
                         return;
                     }
                 }
                 return;
             }
 
-            drawImageCover(ctx, img, canvas.width, canvas.height);
+            drawImageCover(ctx, img, canvas.width, canvas.height, scale);
         },
-        [frameCount, requestFrame] // Removed 'frames' dependency
+        [frameCount, requestFrame, scale, drawImageCover] // Include drawImageCover dependency
     );
 
-    // ─── Dibujar con "object-fit: cover" ──────────────────────
-    function drawImageCover(
-        ctx: CanvasRenderingContext2D,
-        img: HTMLImageElement,
-        canvasW: number,
-        canvasH: number
-    ) {
-        const canvasRatio = canvasW / canvasH;
-        const imgRatio = img.width / img.height;
 
-        let drawW = canvasW;
-        let drawH = canvasH;
-        let offsetX = 0;
-        let offsetY = 0;
-
-        if (imgRatio > canvasRatio) {
-            drawH = canvasH;
-            drawW = img.width * (canvasH / img.height);
-            offsetX = (canvasW - drawW) / 2;
-        } else {
-            drawW = canvasW;
-            drawH = img.height * (canvasW / img.width);
-            offsetY = (canvasH - drawH) / 2;
-        }
-
-        ctx.clearRect(0, 0, canvasW, canvasH);
-        ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
-    }
 
     // ─── Resize handler ───────────────────────────────────────
     useEffect(() => {
@@ -135,7 +152,6 @@ export function ImageSequenceCanvas({
             canvas.width = rect.width * dpr;
             canvas.height = rect.height * dpr;
 
-            const ctx = canvas.getContext("2d");
             // Removed ctx.scale(dpr, dpr) to avoid double-scaling since drawImageCover uses physical pixels (canvas.width/height)
 
 

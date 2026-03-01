@@ -56,7 +56,7 @@ export function VisionEstimator({ className }: VisionEstimatorProps) {
 
             const data = await response.json();
             setResult(data);
-        } catch (err) {
+        } catch (_err) {
             setError("Something went wrong. Please try again.");
         } finally {
             setIsLoading(false);
@@ -65,7 +65,7 @@ export function VisionEstimator({ className }: VisionEstimatorProps) {
 
     return (
         <GlassCard className={cn("p-6 max-w-xl mx-auto", className)}>
-            <h3 className="text-2xl text-white mb-4 font-light">Jenrys Vision™</h3>
+            <h3 className="text-2xl text-white mb-4 font-light">Lasa Vision™</h3>
             <p className="text-white/60 mb-6 text-sm">
                 Upload a photo of your space. Our AI will estimate the dimensions and suggest layouts.
             </p>
@@ -132,7 +132,7 @@ export function VisionEstimator({ className }: VisionEstimatorProps) {
 
                     <div className="text-center">
                         <p className="text-white/60 text-sm italic">
-                            "Based on the analysis, {result.suggestions[0]}"
+                            &ldquo;Based on the analysis, {result.suggestions[0]}&rdquo;
                         </p>
                     </div>
 

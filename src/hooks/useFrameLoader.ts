@@ -95,11 +95,13 @@ export function useFrameLoader({
         let isMounted = true;
 
         const loadSequence = async () => {
-            // 1. Critical Phase (Blocking-ish)
-            const criticalBatches = [];
-            const batchSize = 5;
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
+            const isSaveData = 'connection' in navigator && (navigator as unknown as { connection?: { saveData?: boolean } }).connection?.saveData === true;
+            const actualCriticalCount = isMobile ? Math.min(criticalCount, 15) : criticalCount;
 
-            for (let i = 0; i < Math.min(criticalCount, frameCount); i += batchSize) {
+            // 1. Critical Phase (Blocking-ish)
+            const batchSize = 5;
+            for (let i = 0; i < Math.min(actualCriticalCount, frameCount); i += batchSize) {
                 const batchPromises = [];
                 for (let j = i; j < Math.min(i + batchSize, frameCount); j++) {
                     batchPromises.push(loadFrame(j));
@@ -112,9 +114,15 @@ export function useFrameLoader({
 
             setIsReady(true);
 
+            // Si es móvil o tiene ahorro de datos, no hacemos carga agresiva en background.
+            // Dependeremos del lazy-loading en onUpdate de ScrollTrigger.
+            if (isMobile || isSaveData) {
+                return;
+            }
+
             // 2. Background Phase (Non-blocking)
             // Load remaining frames in larger batches, yielding to main thread
-            const backgroundStart = Math.min(criticalCount, frameCount);
+            const backgroundStart = Math.min(actualCriticalCount, frameCount);
 
             const processNextBatch = (startIndex: number) => {
                 if (startIndex >= frameCount) return;
@@ -161,14 +169,13 @@ export function useFrameLoader({
     const requestFrame = useCallback(
         (index: number) => {
             if (index >= 0 && index < frameCount && !framesRef.current[index] && !loadingSet.current.has(index)) {
-                // Determine direction and load a small cluster around the requested index
-                // This helps when scrolling fast
                 loadFrame(index).then(() => {
                     setFrames([...framesRef.current]);
                 });
 
-                // Preload immediate neighbors
-                const lookAhead = 5;
+                // Preload immediate neighbors (reducido a 2 en vez de 5 para ahorrar datos en móviles)
+                const isMobile = window.matchMedia("(max-width: 768px)").matches;
+                const lookAhead = isMobile ? 2 : 5;
                 for (let i = 1; i <= lookAhead; i++) {
                     if (index + i < frameCount && !framesRef.current[index + i]) loadFrame(index + i);
                 }

@@ -1,0 +1,25 @@
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\clients\new\page.tsx
+  41:18  warning  '_error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\invoices\new\page.tsx
+  152:18  warning  '_error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\api\vision\estimate\route.ts
+   3:28  warning  '_request' is defined but never used  @typescript-eslint/no-unused-vars
+  27:14  warning  '_error' is defined but never used    @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\features\vision\vision-estimator.tsx
+  59:18  warning  '_err' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+  82:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\ui\scroll-sequence.tsx
+   43:61  warning  '_reject' is defined but never used                                                                                                  @typescript-eslint/no-unused-vars
+  132:8   warning  React Hook useEffect has missing dependencies: 'currentIndex' and 'renderFrame'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  139:8   warning  React Hook useEffect has missing dependencies: 'currentIndex' and 'renderFrame'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\hooks\useFrameLoader.ts
+  166:8  warning  React Hook useEffect has a missing dependency: 'loadFrame'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Ô£û 10 problems (0 errors, 10 warnings)
+

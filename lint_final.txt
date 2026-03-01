@@ -1,0 +1,71 @@
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\clients\new\page.tsx
+  41:18  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\admin\invoices\new\page.tsx
+  152:18  warning  '_error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\app\api\vision\estimate\route.ts
+   3:28  warning  'request' is defined but never used  @typescript-eslint/no-unused-vars
+  27:14  warning  'error' is defined but never used    @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\features\vision\ar-viewer.tsx
+  1:1  error    Do not use "@ts-nocheck" because it alters compilation errors  @typescript-eslint/ban-ts-comment
+  5:8  warning  'Script' is defined but never used                             @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\features\vision\vision-estimator.tsx
+   59:18  warning  'err' is defined but never used                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+   82:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  135:29  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  135:76  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\providers\SmoothScrollProvider.tsx
+  44:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\providers\SmoothScrollProvider.tsx:44:9
+  42 |
+  43 |         lenisRef.current = lenis;
+> 44 |         setLenisInstance(lenis);
+     |         ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  45 |
+  46 |         // Sincronizar Lenis con GSAP ScrollTrigger
+  47 |         lenis.on("scroll", ScrollTrigger.update);  react-hooks/set-state-in-effect
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\scroll\ImageSequenceCanvas.tsx
+  155:19  warning  'ctx' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\scroll\ScrollTextReveal.tsx
+  51:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\scroll\ScrollTextReveal.tsx:51:13
+  49 |
+  50 |         if (prefersReducedMotion) {
+> 51 |             setIsVisible(true);
+     |             ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  52 |             return;
+  53 |         }
+  54 |  react-hooks/set-state-in-effect
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\components\ui\scroll-sequence.tsx
+   43:61  warning  'reject' is defined but never used                                                                                                   @typescript-eslint/no-unused-vars
+  132:8   warning  React Hook useEffect has missing dependencies: 'currentIndex' and 'renderFrame'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  139:8   warning  React Hook useEffect has missing dependencies: 'currentIndex' and 'renderFrame'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\morer\OneDrive\Desktop\Henry\src\hooks\useFrameLoader.ts
+   99:46  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  166:8   warning  React Hook useEffect has a missing dependency: 'loadFrame'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Ô£û 18 problems (6 errors, 12 warnings)
+

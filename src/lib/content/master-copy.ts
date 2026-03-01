@@ -1,7 +1,7 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// JENRYS KITCHEN & CLOSET — Textos Maestros / Master Copy
+// LASA KITCHENS & CLOSETS — Textos Maestros / Master Copy
 // Idiomas: English (US Luxury) & Español (Latinoamérica High-End)
-// Tono: "Old World Craftsmanship, New World Technology"
+// Tono: "Traditional Craftsmanship, Modern Precision"
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 export type Locale = "en" | "es";
@@ -29,12 +29,12 @@ export const hero = {
         es: "Estudio de Ebanistería a Medida",
     },
     headline: {
-        en: "JENRYS",
-        es: "JENRYS",
+        en: "LASA",
+        es: "LASA",
     },
     subheadline: {
-        en: "Kitchen & Closet",
-        es: "Cocinas & Closets",
+        en: "Kitchens & Closets",
+        es: "Kitchens & Closets",
     },
     tagline: {
         en: "Where precision joinery meets South Florida living.",
@@ -119,8 +119,8 @@ export const about = {
 
 export const whyChooseUs = {
     overline: {
-        en: "The Jenrys Difference",
-        es: "La Diferencia Jenrys",
+        en: "The Lasa Difference",
+        es: "La Diferencia Lasa",
     },
     headline: {
         en: "Three Pillars of Excellence",
@@ -218,8 +218,8 @@ export const precisionStatement = {
 
 export const vision = {
     overline: {
-        en: "Jenrys Vision™",
-        es: "Jenrys Vision™",
+        en: "Lasa Vision™",
+        es: "Lasa Vision™",
     },
     headline: {
         en: "See It Before It Exists.",
@@ -304,8 +304,8 @@ export const contact = {
     successMessage: {
         headline: { en: "Message Sent", es: "Mensaje Enviado" },
         body: {
-            en: "Thank you. Jenrys's design team acts fast. We will review your vision and contact you within 24 hours to schedule a measurement.",
-            es: "Gracias. El equipo de diseño de Jenrys actúa rápido. Revisaremos su visión y le contactaremos en menos de 24 horas para agendar una medición."
+            en: "Thank you. Jenry's team acts fast. We will review your vision and contact you within 24 hours.",
+            es: "Gracias. El equipo de Jenry actúa rápido. Revisaremos tu consulta y te contactaremos en menos de 24 horas."
         },
         cta: { en: "Send another message", es: "Enviar otro mensaje" },
     }
@@ -317,8 +317,8 @@ export const contact = {
 
 export const footer = {
     brandName: {
-        en: "Jenrys",
-        es: "Jenrys",
+        en: "Lasa",
+        es: "Lasa",
     },
     tagline: {
         en: "Bespoke Kitchens & Closets · South Florida",
@@ -332,8 +332,8 @@ export const footer = {
         contact: { en: "Contact", es: "Contacto" },
     },
     legal: {
-        en: "© {year} Jenrys Kitchen & Closet. All rights reserved.",
-        es: "© {year} Jenrys Kitchen & Closet. Todos los derechos reservados.",
+        en: "© {year} Lasa Kitchens & Closets. All rights reserved.",
+        es: "© {year} Lasa Kitchens & Closets. Todos los derechos reservados.",
     },
     locationLabel: {
         en: "Crafted in South Florida",
@@ -348,22 +348,22 @@ export const footer = {
 export const meta = {
     home: {
         title: {
-            en: "Jenrys Kitchen & Closet | Bespoke Luxury Millwork · South Florida",
-            es: "Jenrys Kitchen & Closet | Ebanistería de Lujo a Medida · South Florida",
+            en: "Lasa Kitchens & Closets | Bespoke Millwork Studio · South Florida",
+            es: "Lasa Kitchens & Closets | Estudio de Ebanistería a Medida · South Florida",
         },
         description: {
-            en: "Bespoke kitchens, walk-in closets, and precision millwork for discerning homeowners in Coral Gables, Key Biscayne, and South Florida. Old-world craftsmanship, new-world technology.",
-            es: "Cocinas a medida, walk-in closets, y ebanistería de precisión para hogares exclusivos en Coral Gables, Key Biscayne, y South Florida. Artesanía tradicional, tecnología de vanguardia.",
+            en: "Bespoke cabinetry, custom closets, and luxury millwork tailored for your lifestyle in Coral Gables and South Florida.",
+            es: "Carpintería a medida, closets personalizados y ebanistería de lujo adaptada a su estilo de vida en Coral Gables y South Florida.",
         },
     },
     about: {
         title: {
-            en: "About Jenrys | Decades of Artisan Craftsmanship · South Florida",
-            es: "Sobre Jenrys | Décadas de Artesanía · South Florida",
+            en: "About Jenry Lasa | Decades of Artisan Craftsmanship · South Florida",
+            es: "Sobre Jenry Lasa | Décadas de Artesanía · South Florida",
         },
         description: {
-            en: "Meet the artisans behind Jenrys Kitchen & Closet. Decades of woodworking expertise, local manufacturing, and a relentless pursuit of perfection in every joint and finish.",
-            es: "Conozca a los artesanos detrás de Jenrys Kitchen & Closet. Décadas de experiencia en ebanistería, fabricación local, y una búsqueda incansable de la perfección en cada unión y acabado.",
+            en: "Meet the artisans behind Lasa Kitchens & Closets. Decades of woodworking expertise, local manufacturing, and a relentless pursuit of perfection in every joint and finish.",
+            es: "Conozca a los artesanos detrás de Lasa Kitchens & Closets. Décadas de experiencia en ebanistería, fabricación local, y una búsqueda incansable de la perfección en cada unión y acabado.",
         },
     },
 } as const;

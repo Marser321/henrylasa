@@ -1,7 +1,8 @@
 import React from "react";
 
 declare global {
-    namespace JSX {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
+    namespace React.JSX {
         interface IntrinsicElements {
             'model-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
                 src?: string;
@@ -20,3 +21,5 @@ declare global {
         }
     }
 }
+
+export { };

@@ -1,0 +1,2 @@
+﻿src/components/features/vision/ar-viewer.tsx(34,13): error TS2339: Property 'model-viewer' does not exist on type 'JSX.IntrinsicElements'.
+src/components/features/vision/ar-viewer.tsx(51,13): error TS2339: Property 'model-viewer' does not exist on type 'JSX.IntrinsicElements'.

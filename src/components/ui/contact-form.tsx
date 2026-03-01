@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { GlassCard } from "./glass-card";
 import { cn } from "@/lib/utils";
-import { Loader2, CheckCircle2, Globe } from "lucide-react";
+import { Loader2, CheckCircle2 } from "lucide-react";
 import { content, type Locale } from "@/lib/content/master-copy";
 
 export function ContactForm({ className }: { className?: string }) {
@@ -19,6 +19,8 @@ export function ContactForm({ className }: { className?: string }) {
         message: "",
     });
 
+    const [error, setError] = useState<string | null>(null);
+
     const c = content.contact;
     const labels = c.formLabels;
 
@@ -27,13 +29,36 @@ export function ContactForm({ className }: { className?: string }) {
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setIsLoading(true);
+        setError(null);
 
-        // Simulate network request
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
 
-        console.log("Form Data:", formData);
-        setIsLoading(false);
-        setIsSuccess(true);
+            const result = await response.json();
+
+            if (!response.ok) {
+                setError(result.error || 'Error al enviar el mensaje. Intentá de nuevo.');
+                return;
+            }
+
+            setIsSuccess(true);
+
+            // Redirigir a WhatsApp luego del envío
+            setTimeout(() => {
+                const waMessage = `Hola! Soy ${formData.name}. Les envié una consulta por la web.`;
+                const url = `https://wa.me/17862713720?text=${encodeURIComponent(waMessage)}`;
+                window.open(url, '_blank');
+            }, 1000);
+
+        } catch {
+            setError('Error de conexión. Comprobá tu internet e intentá de nuevo.');
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -100,40 +125,43 @@ export function ContactForm({ className }: { className?: string }) {
                 {/* 1. Contact Details */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1">
-                        <label className="text-xs uppercase tracking-wider text-white/40 ml-1">{t(labels.name)}</label>
+                        <label htmlFor="contact-name" className="text-xs uppercase tracking-wider text-white/40 ml-1">{t(labels.name)}</label>
                         <input
+                            id="contact-name"
                             required
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
                             type="text"
-                            placeholder={t(labels.namePlaceholder as any) || ""}
+                            placeholder={t(labels.namePlaceholder as { en: string; es: string }) || ""}
                             className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)]/50 focus:border-[var(--accent-gold)]/50 transition-all"
                         />
                     </div>
                     <div className="space-y-1">
-                        <label className="text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.phone)}</label>
+                        <label htmlFor="contact-phone" className="text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.phone)}</label>
                         <input
+                            id="contact-phone"
                             required
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
                             type="tel"
-                            placeholder={t(labels.phonePlaceholder as any) || ""}
+                            placeholder={t(labels.phonePlaceholder as { en: string; es: string }) || ""}
                             className="w-full p-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] focus:border-[var(--accent-gold)] transition-all"
                         />
                     </div>
                 </div>
 
                 <div className="space-y-1">
-                    <label className="text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.email)}</label>
+                    <label htmlFor="contact-email" className="text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.email)}</label>
                     <input
+                        id="contact-email"
                         required
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                         type="email"
-                        placeholder={t(labels.emailPlaceholder as any) || ""}
+                        placeholder={t(labels.emailPlaceholder as { en: string; es: string }) || ""}
                         className="w-full p-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] focus:border-[var(--accent-gold)] transition-all"
                     />
                 </div>
@@ -141,17 +169,25 @@ export function ContactForm({ className }: { className?: string }) {
 
 
                 <div className="space-y-1">
-                    <label className="text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.message)}</label>
+                    <label htmlFor="contact-message" className="text-xs uppercase tracking-widest text-[var(--accent-gold)] font-bold ml-1">{t(labels.message)}</label>
                     <textarea
+                        id="contact-message"
                         required
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
-                        placeholder={t(labels.messagePlaceholder as any) || ""}
+                        placeholder={t(labels.messagePlaceholder as { en: string; es: string }) || ""}
                         rows={4}
                         className="w-full p-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] focus:border-[var(--accent-gold)] transition-all resize-none"
                     />
                 </div>
+
+                {/* Error de envío */}
+                {error && (
+                    <div className="text-red-400 text-sm bg-red-400/10 p-3 rounded-lg border border-red-400/20">
+                        {error}
+                    </div>
+                )}
 
                 <div className="pt-4">
                     <button
@@ -162,7 +198,7 @@ export function ContactForm({ className }: { className?: string }) {
                         {isLoading ? (
                             <>
                                 <Loader2 className="h-5 w-5 animate-spin" />
-                                {t(labels.sending as any)}
+                                {t(labels.sending as { en: string; es: string })}
                             </>
                         ) : (
                             t(labels.submit)
