@@ -3,12 +3,12 @@
         .light-blue { fill: #1B75BC; stroke: #1B75BC; }
         .navy { fill: #1F2A5C; stroke: #1F2A5C; }
         .text-large { font-family: 'Cinzel', serif; font-size: 89.19px; font-weight: 700; fill: #1F2A5C; }
-        .text-small { font-family: 'Inter', sans-serif; font-size: 16.99px; font-weight: 700; fill: #ffffff; letter-spacing: 0.15em; }
+        .text-small { font-family: 'Inter', sans-serif; font-size: 16.99px; font-weight: 700; fill: #ffffff; letter-spacing: 0.12em; }
     </style>
     <!-- Background Rect -->
-    <rect x="55" y="313.12" width="265" height="26.3" fill="#1B75BC" />
+    <rect x="40" y="313.12" width="295" height="26.3" fill="#1B75BC" />
     <!-- Subtext -->
-    <text class="text-small" transform="translate(62 331.87)">K I T C H E N   A N D   C L O S E T</text>
+    <text class="text-small" transform="translate(50 331.87)">K I T C H E N   A N D   C L O S E T</text>
     <!-- Center Logo Mark -->
     <polyline class="navy" stroke-width="1" points="187.55 212.51 187.55 190.57 187.41 190.57 165.61 212.51 187.55 212.51" />
     <polygon class="light-blue" stroke-width="1" points="165.61 212.51 187.41 190.57 165.61 190.57 165.61 212.51" />
