@@ -23,7 +23,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             {/* Sidebar Desktop */}
             <aside className="w-64 border-r border-white/5 bg-black/50 backdrop-blur-xl hidden md:flex flex-col h-screen sticky top-0">
                 <div className="p-6 border-b border-white/5">
-                    <h2 className="text-xl font-display text-[var(--accent-gold)] tracking-widest uppercase">LASA ADMIN</h2>
+                    <h2 className="text-xl font-display tracking-widest uppercase">
+                        <span className="text-white">LASA</span>{' '}
+                        <span className="text-[var(--accent-gold)] text-sm">ADMIN</span>
+                    </h2>
                     <p className="text-xs text-white/40 mt-1">Carpintería Premium</p>
                 </div>
                 <nav className="flex-1 p-4 space-y-1 overflow-y-auto custom-scrollbar">

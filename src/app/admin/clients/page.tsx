@@ -1,11 +1,57 @@
-import React from "react";
-import { GlassCard } from "@/components/ui/glass-card";
-import { Users, Plus, Search, Trash2, ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { getClients } from "./actions";
+'use client';
 
-export default async function ClientsPage() {
-    const clients = await getClients();
+import React, { useState, useEffect } from "react";
+import { GlassCard } from "@/components/ui/glass-card";
+import { Users, Plus, Search, Trash2, ArrowRight, Loader2, AlertCircle } from "lucide-react";
+import Link from "next/link";
+import { getClients, deleteClientAction } from "./actions";
+
+type Client = {
+    id: string;
+    full_name: string;
+    email: string | null;
+    phone: string | null;
+    address: string | null;
+    created_at: string;
+};
+
+export default function ClientsPage() {
+    const [clients, setClients] = useState<Client[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const fetchClients = async () => {
+        setLoading(true);
+        try {
+            const data = await getClients();
+            setClients(data as Client[]);
+        } catch (error) {
+            console.error("Error cargando clientes:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchClients();
+    }, []);
+
+    const handleDelete = async (id: string, name: string) => {
+        if (!confirm(`¿Eliminar al cliente "${name}"? Esta acción no se puede deshacer.`)) return;
+
+        const result = await deleteClientAction(id);
+        if (result.success) {
+            fetchClients();
+        } else {
+            alert("Error al eliminar: " + result.error);
+        }
+    };
+
+    const filteredClients = clients.filter(client =>
+        client.full_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        client.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        client.phone?.includes(searchQuery)
+    );
 
     return (
         <div className="space-y-6 pt-4 pb-20 md:py-8 max-w-7xl mx-auto px-4 md:px-8">
@@ -31,25 +77,32 @@ export default async function ClientsPage() {
                         <input
                             type="text"
                             placeholder="Buscar por nombre, email o teléfono..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                             className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-4 py-2 text-white placeholder:text-white/40 focus:outline-none focus:border-[var(--accent-gold)]/50 transition-colors"
                         />
                     </div>
                 </div>
 
                 <div className="overflow-x-auto">
-                    {clients && clients.length > 0 ? (
+                    {loading ? (
+                        <div className="py-20 flex flex-col items-center justify-center gap-3 text-white/40">
+                            <Loader2 className="w-8 h-8 animate-spin text-[var(--accent-gold)]" />
+                            <p>Cargando clientes...</p>
+                        </div>
+                    ) : filteredClients.length > 0 ? (
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="border-b border-white/10 text-white/60 text-sm">
                                     <th className="pb-3 px-4 font-medium uppercase tracking-wider">Cliente</th>
                                     <th className="pb-3 px-4 font-medium uppercase tracking-wider">Contacto</th>
-                                    <th className="pb-3 px-4 font-medium uppercase tracking-wider">Dirección</th>
-                                    <th className="pb-3 px-4 font-medium uppercase tracking-wider">Registro</th>
+                                    <th className="pb-3 px-4 font-medium uppercase tracking-wider hidden md:table-cell">Dirección</th>
+                                    <th className="pb-3 px-4 font-medium uppercase tracking-wider hidden sm:table-cell">Registro</th>
                                     <th className="pb-3 px-4 font-medium text-right uppercase tracking-wider">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {clients.map((client) => (
+                                {filteredClients.map((client) => (
                                     <tr key={client.id} className="border-b border-white/5 hover:bg-white/5 transition-colors group">
                                         <td className="py-4 px-4">
                                             <div className="flex items-center gap-3">
@@ -72,10 +125,10 @@ export default async function ClientsPage() {
                                                 ) : <span className="text-sm text-white/40">Sin teléfono</span>}
                                             </div>
                                         </td>
-                                        <td className="py-4 px-4 text-sm text-white/60 max-w-[200px] truncate">
+                                        <td className="py-4 px-4 text-sm text-white/60 max-w-[200px] truncate hidden md:table-cell">
                                             {client.address || <span className="text-white/30 italic">No registrada</span>}
                                         </td>
-                                        <td className="py-4 px-4 text-sm text-white/60">
+                                        <td className="py-4 px-4 text-sm text-white/60 hidden sm:table-cell">
                                             {new Date(client.created_at).toLocaleDateString('es-UY')}
                                         </td>
                                         <td className="py-4 px-4 text-right">
@@ -83,7 +136,11 @@ export default async function ClientsPage() {
                                                 <Link href={`/admin/clients/${client.id}`} className="p-2 text-white/60 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-colors" title="Ver Perfil">
                                                     <ArrowRight className="w-4 h-4" />
                                                 </Link>
-                                                <button className="p-2 text-red-400 hover:text-red-300 bg-red-500/10 hover:bg-red-500/20 rounded-lg transition-colors" title="Eliminar Cliente">
+                                                <button
+                                                    onClick={() => handleDelete(client.id, client.full_name)}
+                                                    className="p-2 text-red-400 hover:text-red-300 bg-red-500/10 hover:bg-red-500/20 rounded-lg transition-colors"
+                                                    title="Eliminar Cliente"
+                                                >
                                                     <Trash2 className="w-4 h-4" />
                                                 </button>
                                             </div>
@@ -92,6 +149,12 @@ export default async function ClientsPage() {
                                 ))}
                             </tbody>
                         </table>
+                    ) : clients.length > 0 ? (
+                        <div className="text-center py-12">
+                            <AlertCircle className="w-12 h-12 text-white/20 mx-auto mb-4" />
+                            <h3 className="text-xl font-display text-white mb-2">Sin resultados</h3>
+                            <p className="text-white/60 max-w-sm mx-auto">No se encontraron clientes con &quot;{searchQuery}&quot;.</p>
+                        </div>
                     ) : (
                         <div className="text-center py-12">
                             <Users className="w-12 h-12 text-white/20 mx-auto mb-4" />

@@ -73,7 +73,7 @@ export const Logo = ({ className = "h-12 w-auto", animate = true }: LogoProps) =
                     <rect x="78.77" y="25.38" width="224.25" height="195.75" fill="none" />
                 </clipPath>
                 <clipPath id={clip7}>
-                    <rect x="10.72" y="-5.19" width="375" height="375" fill="none" />
+                    <rect x="0" y="0" width="375" height="375" fill="none" />
                 </clipPath>
                 <style>
                     {`

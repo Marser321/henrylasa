@@ -202,10 +202,18 @@ export default function Home() {
        * 8. FOOTER
        * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <footer className="relative z-10 border-t border-white/10 bg-[var(--bg-void)] py-6">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 flex flex-col items-center justify-center gap-4">
           <p className="text-xs text-white/20 font-light tracking-wider">
             © {new Date().getFullYear()} Lasa Kitchens &amp; Closets. All rights reserved.
           </p>
+          {/* Botón camuflado para admin */}
+          <a
+            href="/login"
+            className="text-[10px] text-white/5 hover:text-white/30 transition-colors uppercase tracking-widest font-mono"
+            title="System Access"
+          >
+            SYS L-GI
+          </a>
         </div>
       </footer>
     </main>

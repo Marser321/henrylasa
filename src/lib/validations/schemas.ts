@@ -40,3 +40,15 @@ export const invoiceSchema = z.object({
     total: z.number().nonnegative(),
     items: z.array(invoiceItemSchema).min(1, 'Debe haber al menos un ítem'),
 });
+
+// ─── Consultations / Visitas ─────────────────────────────
+export const consultationSchema = z.object({
+    customerName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
+    projectDescription: z.string().min(2, 'La descripción del proyecto es obligatoria'),
+    scheduledDate: z.string().min(1, 'La fecha es obligatoria'),
+    scheduledTime: z.string().min(1, 'La hora es obligatoria'),
+    expert: z.string().min(1, 'El experto asignado es obligatorio'),
+    status: z.enum(['Pendiente', 'Confirmada', 'Completada', 'Cancelada']).default('Pendiente'),
+    location: z.string().nullable().optional(),
+    notes: z.string().nullable().optional(),
+});

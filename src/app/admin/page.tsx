@@ -1,11 +1,32 @@
-"use client";
-
 import React from "react";
 import { GlassCard } from "@/components/ui/glass-card";
-import { Plus } from "lucide-react";
+import { Plus, Calendar, Users, FileText, DollarSign, Hammer } from "lucide-react";
 import Link from "next/link";
+import { createClient } from "@/lib/insforge/server";
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+    const insforge = createClient();
+
+    // ─── Fetch datos reales en paralelo ───────────────────
+    const [projectsRes, clientsRes, invoicesRes, consultationsRes] = await Promise.all([
+        insforge.database.from('projects').select('id, status').eq('status', 'in_progress'),
+        insforge.database.from('clients').select('id, created_at').order('created_at', { ascending: false }).limit(10),
+        insforge.database.from('invoices').select('id, total_amount, status, issue_date').order('created_at', { ascending: false }),
+        insforge.database.from('consultations').select('id, scheduled_date, status').eq('scheduled_date', new Date().toISOString().split('T')[0]),
+    ]);
+
+    const activeProjects = projectsRes.data?.length || 0;
+    const recentClients = clientsRes.data?.length || 0;
+    const todayConsultations = consultationsRes.data?.length || 0;
+
+    // Facturado del mes actual
+    const now = new Date();
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
+    const monthInvoices = invoicesRes.data?.filter(inv =>
+        inv.issue_date >= monthStart && inv.status === 'paid'
+    ) || [];
+    const monthBilled = monthInvoices.reduce((acc, inv) => acc + Number(inv.total_amount), 0);
+
     return (
         <div className="p-4 md:p-8 space-y-8">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -18,24 +39,73 @@ export default function AdminDashboard() {
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <GlassCard className="p-6 border-white/5">
-                    <h3 className="text-white/40 uppercase tracking-widest text-xs mb-2">Proyectos Activos</h3>
-                    <p className="text-4xl font-light text-white">0</p>
+            {/* Tarjetas principales con datos reales */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <GlassCard className="p-6 border-white/5 bg-gradient-to-br from-black/50 to-blue-500/5">
+                    <div className="flex items-center gap-3 mb-2">
+                        <div className="p-2 bg-blue-500/20 rounded-lg text-blue-400"><Hammer className="w-5 h-5" /></div>
+                        <h3 className="text-white/40 uppercase tracking-widest text-xs">Proyectos Activos</h3>
+                    </div>
+                    <p className="text-4xl font-light text-white mt-2">{activeProjects}</p>
                 </GlassCard>
-                <GlassCard className="p-6 border-white/5">
-                    <h3 className="text-white/40 uppercase tracking-widest text-xs mb-2">Facturado Mes</h3>
-                    <p className="text-4xl font-light text-[var(--accent-gold)]">$0.00</p>
+
+                <GlassCard className="p-6 border-white/5 bg-gradient-to-br from-black/50 to-[var(--accent-gold)]/5">
+                    <div className="flex items-center gap-3 mb-2">
+                        <div className="p-2 bg-[var(--accent-gold)]/20 rounded-lg text-[var(--accent-gold)]"><DollarSign className="w-5 h-5" /></div>
+                        <h3 className="text-white/40 uppercase tracking-widest text-xs">Facturado Mes</h3>
+                    </div>
+                    <p className="text-4xl font-light text-[var(--accent-gold)] mt-2">${monthBilled.toLocaleString('en-US')}</p>
                 </GlassCard>
-                <GlassCard className="p-6 border-white/5">
-                    <h3 className="text-white/40 uppercase tracking-widest text-xs mb-2">Clientes Recientes</h3>
-                    <p className="text-4xl font-light text-white">0</p>
+
+                <GlassCard className="p-6 border-white/5 bg-gradient-to-br from-black/50 to-green-500/5">
+                    <div className="flex items-center gap-3 mb-2">
+                        <div className="p-2 bg-green-500/20 rounded-lg text-green-400"><Users className="w-5 h-5" /></div>
+                        <h3 className="text-white/40 uppercase tracking-widest text-xs">Clientes Recientes</h3>
+                    </div>
+                    <p className="text-4xl font-light text-white mt-2">{recentClients}</p>
+                </GlassCard>
+
+                <GlassCard className="p-6 border-white/5 bg-gradient-to-br from-black/50 to-purple-500/5">
+                    <div className="flex items-center gap-3 mb-2">
+                        <div className="p-2 bg-purple-500/20 rounded-lg text-purple-400"><Calendar className="w-5 h-5" /></div>
+                        <h3 className="text-white/40 uppercase tracking-widest text-xs">Visitas Hoy</h3>
+                    </div>
+                    <p className="text-4xl font-light text-white mt-2">{todayConsultations}</p>
                 </GlassCard>
             </div>
 
-            <GlassCard className="p-8 border-white/5 min-h-[400px] flex items-center justify-center">
-                <p className="text-white/30 text-center">Conectá la base de datos (InsForge) para ver los datos reales en esta vista.</p>
-            </GlassCard>
+            {/* Accesos rápidos */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Link href="/admin/consultations">
+                    <GlassCard className="p-6 border-white/5 hover:bg-white/5 transition-colors cursor-pointer group">
+                        <div className="flex items-center gap-3 mb-2">
+                            <Calendar className="w-5 h-5 text-[var(--accent-gold)]" />
+                            <h3 className="text-white font-medium group-hover:text-[var(--accent-gold)] transition-colors">Consultas y Visitas</h3>
+                        </div>
+                        <p className="text-white/40 text-sm">Gestionar agenda de mediciones y visitas técnicas.</p>
+                    </GlassCard>
+                </Link>
+
+                <Link href="/admin/clients">
+                    <GlassCard className="p-6 border-white/5 hover:bg-white/5 transition-colors cursor-pointer group">
+                        <div className="flex items-center gap-3 mb-2">
+                            <Users className="w-5 h-5 text-[var(--accent-gold)]" />
+                            <h3 className="text-white font-medium group-hover:text-[var(--accent-gold)] transition-colors">Directorio de Clientes</h3>
+                        </div>
+                        <p className="text-white/40 text-sm">Ver y gestionar la base de clientes.</p>
+                    </GlassCard>
+                </Link>
+
+                <Link href="/admin/invoices">
+                    <GlassCard className="p-6 border-white/5 hover:bg-white/5 transition-colors cursor-pointer group">
+                        <div className="flex items-center gap-3 mb-2">
+                            <FileText className="w-5 h-5 text-[var(--accent-gold)]" />
+                            <h3 className="text-white font-medium group-hover:text-[var(--accent-gold)] transition-colors">Finanzas</h3>
+                        </div>
+                        <p className="text-white/40 text-sm">Cotizaciones, facturas y resumen financiero.</p>
+                    </GlassCard>
+                </Link>
+            </div>
         </div>
     );
 }
