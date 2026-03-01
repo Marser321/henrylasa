@@ -25,7 +25,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 <div className="p-6 border-b border-white/5">
                     <h2 className="text-xl font-display tracking-widest uppercase">
                         <span className="text-white">LASA</span>{' '}
-                        <span className="text-[var(--accent-gold)] text-sm">ADMIN</span>
+                        <span className="text-[var(--accent-blue)] text-sm">ADMIN</span>
                     </h2>
                     <p className="text-xs text-white/40 mt-1">Carpintería Premium</p>
                 </div>
@@ -61,19 +61,19 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
             {/* Mobile Bottom Navigation Bar */}
             <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-xl border-t border-white/10 flex justify-around items-center p-3 z-50 safe-area-pb">
-                <Link href="/admin" className="flex flex-col items-center gap-1 text-white/60 hover:text-[var(--accent-gold)] transition-colors">
+                <Link href="/admin" className="flex flex-col items-center gap-1 text-white/60 hover:text-[var(--accent-blue)] transition-colors">
                     <LayoutDashboard className="w-5 h-5" />
                     <span className="text-[10px] uppercase font-medium">Inicio</span>
                 </Link>
-                <Link href="/admin/consultations" className="flex flex-col items-center gap-1 text-white/60 hover:text-[var(--accent-gold)] transition-colors">
+                <Link href="/admin/consultations" className="flex flex-col items-center gap-1 text-white/60 hover:text-[var(--accent-blue)] transition-colors">
                     <Calendar className="w-5 h-5" />
                     <span className="text-[10px] uppercase font-medium">Visitas</span>
                 </Link>
-                <Link href="/admin/clients" className="flex flex-col items-center gap-1 text-white/60 hover:text-[var(--accent-gold)] transition-colors">
+                <Link href="/admin/clients" className="flex flex-col items-center gap-1 text-white/60 hover:text-[var(--accent-blue)] transition-colors">
                     <Users className="w-5 h-5" />
                     <span className="text-[10px] uppercase font-medium">Clientes</span>
                 </Link>
-                <Link href="/admin/staff" className="flex flex-col items-center gap-1 text-white/60 hover:text-[var(--accent-gold)] transition-colors">
+                <Link href="/admin/staff" className="flex flex-col items-center gap-1 text-white/60 hover:text-[var(--accent-blue)] transition-colors">
                     <HardHat className="w-5 h-5" />
                     <span className="text-[10px] uppercase font-medium">Equipo</span>
                 </Link>
